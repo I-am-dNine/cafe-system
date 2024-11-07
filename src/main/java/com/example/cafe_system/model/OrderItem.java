@@ -1,8 +1,8 @@
 package com.example.cafe_system.model;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
 
+@Entity
 public class OrderItem {
 
     @Id
@@ -10,6 +10,7 @@ public class OrderItem {
     private Long id;
 
     private int quantity;
+
 
     @ManyToOne
     @JoinColumn(name = "menu_item_id")

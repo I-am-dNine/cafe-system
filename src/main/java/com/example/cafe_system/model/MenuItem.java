@@ -1,7 +1,6 @@
 package com.example.cafe_system.model;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
 import java.math.BigDecimal;
 
 @Entity
