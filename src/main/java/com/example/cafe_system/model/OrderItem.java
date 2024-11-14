@@ -3,6 +3,7 @@ package com.example.cafe_system.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "order_items")
 public class OrderItem {
 
     @Id

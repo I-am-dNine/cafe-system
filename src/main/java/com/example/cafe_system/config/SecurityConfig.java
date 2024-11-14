@@ -17,7 +17,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
                     .requestMatchers("/api/menu/**").permitAll() // access all type user to visit menu
-                    .requestMatchers("/api/orders/**").authenticated() // order need auth
+                    .requestMatchers("/api/orders/**").permitAll()
                     .requestMatchers("/api/admin/**").hasRole("ADMIN") // mgmt
                     .anyRequest().authenticated()
                 )
