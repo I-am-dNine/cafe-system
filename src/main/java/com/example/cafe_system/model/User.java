@@ -1,5 +1,6 @@
 package com.example.cafe_system.model;
 
+import com.example.cafe_system.enums.Role;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,7 +15,7 @@ public class User {
 
     private String password;
 
-    private String role; // (ROLE_USER, ROLE_ADMIN)
+    private Role role;
 
     public Long getId() {
         return id;
@@ -40,12 +41,11 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
-
 }
