@@ -1,6 +1,8 @@
 package com.example.cafe_system.service;
 
 import com.example.cafe_system.dto.CreateOrderRequest;
+import com.example.cafe_system.enums.OrderStatus;
+import com.example.cafe_system.exception.ResourceNotFoundException;
 import com.example.cafe_system.model.Order;
 import com.example.cafe_system.model.OrderItem;
 import com.example.cafe_system.model.User;
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static com.example.cafe_system.enums.OrderStatus.IN_PROGRESS;
 
 @Service
 public class OrderService {
@@ -32,7 +36,7 @@ public class OrderService {
         Order order = new Order();
         // TODO: set order other attributes （order info,time ,state...）
         order.setOrderDate(LocalDateTime.now());
-        order.setStatus("PENDING");
+        order.setStatus(IN_PROGRESS);
 
         List<OrderItem> orderItems = orderRequest.getOrderItems();
         order.setOrderItems(orderItems);
@@ -73,6 +77,13 @@ public class OrderService {
 
     public void deleteOrder(Long id) {
         orderRepository.deleteById(id);
+    }
+
+    public Order updateOrderStatus(Long orderId, OrderStatus status) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
+        order.setStatus(status);
+        return orderRepository.save(order);
     }
 
 }
